@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: LUCKY-MD-XFORCE
-    env: node # Change to "python" or your environment if not Node.js
+    name: Ray-MD
+    env: node
     plan: free
     buildCommand: npm install 
     startCommand: npm start   
