@@ -9,8 +9,8 @@ RUN apt-get update && \
   npm i pm2 -g && \
   rm -rf /var/lib/apt/lists/*
   
-RUN  git clone https://github.com/mr-X-force/LUCKY-MD-XFORCE  /root/Lucky_BOt
-WORKDIR /root/Lucky_Bot/
+RUN  git clone https://github.com/VIRUS-CAMP/Ray-MD  /root/Ray_BOt
+WORKDIR /root/Ray_Bot/
 
 
 
