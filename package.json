@@ -30,6 +30,7 @@
     "@xaviabot/fb-downloader": "^1.0.14",
     "acrcloud": "^1.4.0", 
     "aptoide-scraper": "^1.0.1",
+    "better-sqlite3": "^11.10.0"
     "axios": "^1.4.0",  
     "buffer": "^6.0.3",   
     "canvacord": "^5.4.8", 
@@ -72,4 +73,5 @@
    
   }
 }
+
 
