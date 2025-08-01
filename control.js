@@ -1,9 +1,8 @@
-// FredieTech tz 🇹🇿 team
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 app.get("/", (req, res) => {
-  res.send("LUCKY MD XFORCE IS ALIVE ✅");
+  res.send("Ray MD XFORCE IS ALIVE ✅");
   });
 // Add port listening
 app.listen(PORT, () => {
@@ -50,20 +49,20 @@ let path = require("path");
 const FileType = require('file-type');
 const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
 //import chalk from 'chalk'
-const { verifierEtatJid , recupererActionJid } = require("./luckydatabase/antilien");
-const { atbverifierEtatJid , atbrecupererActionJid } = require("./luckydatabase/antibot");
+const { verifierEtatJid , recupererActionJid } = require("./database/antilien");
+const { atbverifierEtatJid , atbrecupererActionJid } = require("./database/antibot");
 let evt = require(__dirname + "/fredi/ezra");
-const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./luckydatabase/banUser");
-const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./luckydatabase/banGroup");
-const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./luckydatabase/onlyAdmin");
-//const //{loadCmd}=require("/fredi/mesfonctions")
-let { reagir } = require(__dirname + "/fredi/app");
-var session = conf.session.replace(/LUCKY-XFORCE••<=>/g,"");
+const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./database/banUser");
+const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./database/banGroup");
+const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./database/onlyAdmin");
+//const //{loadCmd}=require("/shukrani/mesfonctions")
+let { reagir } = require(__dirname + "/shukrani/app");
+var session = conf.session.replace(/Ray-MD••<=>/g,"");
 const prefixe = conf.PREFIXE;
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 const BaseUrl = process.env.GITHUB_GIT;
-const Ezraapikey = process.env.BOT_OWNER;
+const rayapikey = process.env.BOT_OWNER;
 
 async function authentification() {
     try {
@@ -94,7 +93,7 @@ authentification();
         const sockOptions = {
             version,
             logger: pino({ level: "silent" }),
-            browser: ['Lucky-Md-Xforce', "safari", "1.0.0"],
+            browser: ['Ray-Md', "safari", "1.0.0"],
             printQRInTerminal: true,
             fireInitQueries: false,
             shouldSyncHistoryMessage: true,
@@ -145,7 +144,7 @@ function getCurrentDateTime() {
 setInterval(async () => {
     if (conf.AUTO_BIO === "yes") {
         const currentDateTime = getCurrentDateTime(); // Get the current date and time
-        const bioText = `💬 Lucky Xforce is active...\n${currentDateTime}`; // Format the bio text
+        const bioText = `💬 Ray md is active...\n${currentDateTime}`; // Format the bio text
         await zk.updateProfileStatus(bioText); // Update the bio
         console.log(`Updated Bio: ${bioText}`); // Log the updated bio
     }
@@ -206,25 +205,8 @@ zk.ev.on("messages.upsert", async (m) => {
     }
 });
       
-                            /***Function to download and return media buffer
-async function downloadMedia(message) {
-    const mediaType = Object.keys(message)[0].replace('Message', ''); // Determine the media type
-    try {
-        const stream = await zk.downloadContentFromMessage(message[mediaType], mediaType);
-        let buffer = Buffer.from([]);
-        for await (const chunk of stream) {
-            buffer = Buffer.concat([buffer, chunk]);
-        }
-        return buffer;
-    } catch (error) {
-        console.error('Error downloading media:', error);
-        return null;
-    }
-} ***/
-
-// Function to handle anti-delete
     zk.ev.on("messages.upsert", async (m) => {  
-    if (conf.LUCKY_ADM !== "yes") return; // Ensure antidelete is enabled  
+    if (conf.RAY_ADM !== "yes") return; // Ensure antidelete is enabled  
 
     const { messages } = m;  
     const ms = messages[0];  
@@ -269,7 +251,7 @@ async function downloadMedia(message) {
                 }
             }
 
-            const notification = `🫟 *Lucky Md Xforce antiDelete* 🫟\n` +
+            const notification = `🫟 *Ray Md antiDelete* 🫟\n` +
                                 `• Deleted by: @${deleterJid.split("@")[0]}\n` +
                                 `• Original sender: @${originalSenderJid.split("@")[0]}\n` +
                                 `${groupInfo}\n` +
@@ -345,8 +327,6 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 let lastReactionTime = 0;
 
 
-// Array of reaction emojis for regular messages and status updates
-// Array of reaction emojis for regular messages and status updates
 const emojiMap = {
     // General Greetings
     "hello": ["👋", "🙂", "😊", "🙋‍♂️", "🙋‍♀️"],
@@ -365,8 +345,8 @@ const emojiMap = {
     "niaje": ["👋", "😄", "💥", "🔥", "🕺", "💃"],
     
     // Names (can be expanded with more names as needed)
-    "fredi": ["😎", "💯", "🔥", "🚀", "👑"],
-    "ezra": ["🔥", "💥", "👑", "💯", "😎"],
+    "shukrani": ["😎", "💯", "🔥", "🚀", "👑"],
+    "ray": ["🔥", "💥", "👑", "💯", "😎"],
     
     // Expressions of gratitude
     "thanks": ["🙏", "😊", "💖", "❤️", "💐"],
@@ -880,7 +860,7 @@ if (conf.AUTO_REACT_STATUS === "yes") {
                             text: randomReaction,
                         },
                     }, {
-                        statusJidList: [message.key.participant, ezra],
+                        statusJidList: [message.key.participant, ray],
                     });
 
                     lastReactionTime = Date.now();
@@ -962,7 +942,7 @@ async function sendVCard(jid, baseName) {
             document: { url: vCardPath },
             mimetype: 'text/vcard',
             fileName: `${name}.vcf`,
-            caption: `Contact saved as ${name}. Please import this vCard to add the number to your contacts.\n\n LUCKY-MD-XFORCE`
+            caption: `Contact saved as ${name}. Please import this vCard to add the number to your contacts.\n\n RAY-MD`
         });
 
         console.log(`vCard created and sent for: ${name} (${jid})`);
@@ -986,7 +966,7 @@ zk.ev.on("messages.upsert", async (m) => {
     if (!ms.message) return;
 
     const origineMessage = ms.key.remoteJid;
-    const baseName = "LUCKY-MD-XFORCE";
+    const baseName = "RAY-MD";
 
     // Check if the message is from an individual and if contact is not saved
     if (origineMessage.endsWith("@s.whatsapp.net") && (!store.contacts[origineMessage] || !store.contacts[origineMessage].name)) {
@@ -998,7 +978,7 @@ zk.ev.on("messages.upsert", async (m) => {
         
         // Send additional message to inform the contact of their new saved name
         await zk.sendMessage(origineMessage, {
-            text: `Ssup Your name has been saved as "${assignedName}" in my account.\n\nLUCKY-MD-XFORCE`
+            text: `Ssup Your name has been saved as "${assignedName}" in my account.\n\nRAY-MD`
         });
 
         console.log(`Contact ${assignedName} has been saved and notified.`);
@@ -1073,7 +1053,7 @@ const getAudioForSentence = (sentence) => {
 
 // Auto-reply with audio functionality
 if (conf.AUDIO_REPLY === "yes") {
-    console.log("Lucky Xforce AUTO_REPLY_AUDIO is enabled. Listening for messages...");
+    console.log("Ray md AUTO_REPLY_AUDIO is enabled. Listening for messages...");
 
     zk.ev.on("messages.upsert", async (m) => {
         try {
@@ -1137,18 +1117,12 @@ if (conf.AUDIO_REPLY === "yes") {
             var origineMessage = ms.key.remoteJid;
             var idBot = decodeJid(zk.user.id);
             var servBot = idBot.split('@')[0];
-            /* const fredi='255620814108';
-             const ezra='255764182801';
-             const fredietech='255752593977'*/
-            /*  var superUser=[servBot,fredi,ezra,fredietech].map((s)=>s.replace(/[^0-9]/g)+"@s.whatsapp.net").includes(auteurMessage);
-              var dev =[fredi,ezra,fredietech].map((t)=>t.replace(/[^0-9]/g)+"@s.whatsapp.net").includes(auteurMessage);*/
+            
             const verifGroupe = origineMessage?.endsWith("@g.us");
             var infosGroupe = verifGroupe ? await zk.groupMetadata(origineMessage) : "";
             var nomGroupe = verifGroupe ? infosGroupe.subject : "";
             var msgRepondu = ms.message.extendedTextMessage?.contextInfo?.quotedMessage;
             var auteurMsgRepondu = decodeJid(ms.message?.extendedTextMessage?.contextInfo?.participant);
-            //ms.message.extendedTextMessage?.contextInfo?.mentionedJid
-            // ms.message.extendedTextMessage?.contextInfo?.quotedMessage.
             var mr = ms.Message?.extendedTextMessage?.contextInfo?.mentionedJid;
             var utilisateur = mr ? mr : msgRepondu ? auteurMsgRepondu : "";
             var auteurMessage = verifGroupe ? (ms.key.participant ? ms.key.participant : ms.participant) : origineMessage;
@@ -1157,11 +1131,11 @@ if (conf.AUDIO_REPLY === "yes") {
             }
             
             var membreGroupe = verifGroupe ? ms.key.participant : '';
-            const { getAllSudoNumbers } = require("./luckydatabase/sudo");
+            const { getAllSudoNumbers } = require("./database/sudo");
             const nomAuteurMessage = ms.pushName;
-            const fredietech = '255752593977';
-            const fredi = '255620814108';
-            const ezra = "255764182801";
+            const shukraniray = '25573350309';
+            const shukrani = '255773350309';
+            const ray = "255615184672";
             const sudo = await getAllSudoNumbers();
             const superUserNumbers = [servBot, fredietech, fredi, ezra, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
             const allAllowedNumbers = superUserNumbers.concat(sudo);
@@ -1438,7 +1412,7 @@ if (texte && texte.startsWith('>')) {
             
  //---------------------------------------rang-count--------------------------------
              if (texte && auteurMessage.endsWith("s.whatsapp.net")) {
-  const { ajouterOuMettreAJourUserData } = require("./luckydatabase/level"); 
+  const { ajouterOuMettreAJourUserData } = require("./database/level"); 
   try {
     await ajouterOuMettreAJourUserData(auteurMessage);
   } catch (e) {
@@ -1458,7 +1432,7 @@ if (texte && texte.startsWith('>')) {
             
                     if(superUser) {console.log('hummm') ; return ;} 
                     
-                    let mbd = require('./luckydatabase/mention') ;
+                    let mbd = require('./database/mention') ;
             
                     let alldata = await mbd.recupererToutesLesValeurs() ;
             
@@ -1535,9 +1509,9 @@ if (texte && texte.startsWith('>')) {
                                     };
                                     var txt = "lien detected, \n";
                                    // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
-                                    const gifLink = "https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/remover.gif";
+                                    const gifLink = "https://raw.githubusercontent.com/VIRUS-CAMP/Ray-MD/main/media/remover.gif";
                                     var sticker = new Sticker(gifLink, {
-                                        pack: 'FrediEzra',
+                                        pack: 'shukraniray',
                                         author: conf.OWNER_NAME,
                                         type: StickerTypes.FULL,
                                         categories: ['🤩', '🎉'],
@@ -1573,7 +1547,7 @@ if (texte && texte.startsWith('>')) {
                                        await fs.unlink("st1.webp");
 
                                     } else if(action === 'warn') {
-                                        const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./luckydatabase/warn') ;
+                                        const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./database/warn') ;
 
                             let warn = await getWarnCountByJID(auteurMessage) ; 
                             let warnlimit = conf.WARN_COUNT
@@ -1608,7 +1582,7 @@ if (texte && texte.startsWith('>')) {
         
     
     catch (e) {
-        console.log("luckydatabase err " + e);
+        console.log("database err " + e);
     }
     
 
@@ -1633,9 +1607,9 @@ if (texte && texte.startsWith('>')) {
             };
             var txt = "bot detected, \n";
            // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
-            const gifLink = "https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/remover.gif";
+            const gifLink = "https://raw.githubusercontent.com/VIRUS-CAMP/Ray-MD/main/media/remover.gif";
             var sticker = new Sticker(gifLink, {
-                pack: 'FredieTech',
+                pack: 'shukraniray',
                 author: conf.OWNER_NAME,
                 type: StickerTypes.FULL,
                 categories: ['🤩', '🎉'],
@@ -1671,7 +1645,7 @@ if (texte && texte.startsWith('>')) {
                await fs.unlink("st1.webp");
 
             } else if(action === 'warn') {
-                const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./luckydatabase/warn') ;
+                const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./database/warn') ;
 
     let warn = await getWarnCountByJID(auteurMessage) ; 
     let warnlimit = conf.WARN_COUNT
@@ -1763,7 +1737,7 @@ if (texte && texte.startsWith('>')) {
         //fin événement message
 
 /******** evenement groupe update ****************/
-const { recupevents } = require('./luckydatabase/welcome'); 
+const { recupevents } = require('./database/welcome'); 
 
 zk.ev.on('group-participants.update', async (group) => {
     console.log(group);
@@ -1900,23 +1874,23 @@ zk.ev.on('group-participants.update', async (group) => {
         zk.ev.on("connection.update", async (con) => {
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
-                console.log("♻️ Lucky Xforce is connecting...");
+                console.log("♻️ Ray md is connecting...");
             }
             else if (connection === 'open') {
-                console.log("🔮 Lucky Xforce Connected to WhatsApp! ☺️");
+                console.log("🔮 Ray md Connected to WhatsApp! ☺️");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("👀 Lucky Xforce is Online 🕸\n\n");
+                console.log("👀 Ray md is Online 🕸\n\n");
                 //chargement des luckycmd 
-                console.log("🛒 Loading Lucky Xforce Plugins...\n");
+                console.log("🛒 Loading Ray md Plugins...\n");
                 fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
                         try {
                             require(__dirname + "/plugins/" + fichier);
-                            console.log(fichier + "🛒🔑 Lucky Xforce plugins Installed Successfully✔️");
+                            console.log(fichier + "🛒🔑 Ray md plugins Installed Successfully✔️");
                         }
                         catch (e) {
                             console.log(`${fichier} could not be installed due to : ${e}`);
@@ -1936,7 +1910,7 @@ zk.ev.on('group-participants.update', async (group) => {
                 else {
                     md = "undefined";
                 }
-                console.log("🏆🗡️ Lucky Xforce Plugins Installation Completed ✅");
+                console.log("🏆🗡️ Ray md Plugins Installation Completed ✅");
 
                 await activateCrons();
                 
