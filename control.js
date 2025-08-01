@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 app.get("/", (req, res) => {
-  res.send("Ray MD XFORCE IS ALIVE ✅");
+  res.send("Ray MD IS ALIVE ✅");
   });
 // Add port listening
 app.listen(PORT, () => {
@@ -51,7 +51,7 @@ const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter')
 //import chalk from 'chalk'
 const { verifierEtatJid , recupererActionJid } = require("./database/antilien");
 const { atbverifierEtatJid , atbrecupererActionJid } = require("./database/antibot");
-let evt = require(__dirname + "/fredi/ezra");
+let evt = require(__dirname + "/shukrani/ray");
 const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./database/banUser");
 const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./database/banGroup");
 const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./database/onlyAdmin");
