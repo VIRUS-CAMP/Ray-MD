@@ -1,5 +1,5 @@
 {
-  "name": "babyboy",
+  "name": "shukrani",
   "version": "2.0.0",
   "description": "",
   "main": "control.js",
@@ -8,18 +8,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "s": "node control.js", 
     "start": "node control.js", 
-    "ezra": "pm2 start control.js --attach --max-memory-restart 490M",
+    "ray": "pm2 start control.js --attach --max-memory-restart 490M",
     "c": "tsc"
   },
   "keywords": [
     "bot",
     "Baileys",
-    "Lucky-Xforce",
+    "RAY-MD",
     "whatsapp",
     "whatsapp-bot",
-    "frediezra"
+    "shukraniray"
   ],
-  "author": "frediezra",
+  "author": "shukraniray",
   "license": "ISC",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",  
@@ -72,3 +72,4 @@
    
   }
 }
+
